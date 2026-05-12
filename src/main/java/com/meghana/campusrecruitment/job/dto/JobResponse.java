@@ -1,41 +1,39 @@
 package com.meghana.campusrecruitment.job.dto;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import com.meghana.campusrecruitment.job.enums.JobType;
 
-import jakarta.validation.constraints.Future;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
-public class JobRequest {
+@Builder
 
-    @NotNull
-    private Long recruiterId;
+public class JobResponse {
 
-    @NotBlank
+    private Long id;
+
     private String title;
 
-    @NotBlank
     private String companyName;
 
-    @NotBlank
     private String description;
 
-    @NotBlank
     private String location;
 
-    @NotNull
     private Double salaryPackage;
 
-    @NotBlank
     private String skillsRequired;
 
-    @NotNull
     private JobType jobType;
 
-    @Future
     private LocalDate applicationDeadline;
+
+    private LocalDateTime createdAt;
+
+    private String recruiterName;
+
+    private String recruiterCompany;
 }

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.meghana.campusrecruitment.job.dto.JobRequest;
-import com.meghana.campusrecruitment.job.entity.Job;
+import com.meghana.campusrecruitment.job.dto.JobResponse;
 import com.meghana.campusrecruitment.job.service.JobService;
 
 import jakarta.validation.Valid;
@@ -38,14 +38,15 @@ public class JobController {
 
     // GET SINGLE JOB
     @GetMapping("/{id}")
-    public Job getJob(@PathVariable Long id) {
+    public JobResponse getJobById(
+            @PathVariable Long id) {
 
         return jobService.getJob(id);
     }
 
     // GET ALL JOBS
     @GetMapping
-    public Page<Job> getAllJobs(
+    public Page<JobResponse> getAllJobs(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "5") int size) {
 
@@ -54,12 +55,16 @@ public class JobController {
 
     // SEARCH JOBS
     @GetMapping("/search")
-    public Page<Job> searchJobs(
+    public Page<JobResponse> searchJobs(
             @RequestParam String keyword,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "5") int size) {
 
-        return jobService.searchJobs(keyword, page, size);
+        return jobService.searchJobs(
+                keyword,
+                page,
+                size
+        );
     }
 
     // UPDATE JOB
